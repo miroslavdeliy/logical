@@ -1,29 +1,48 @@
-#Ввод данных и проверка корректности ввода возраста
-try:
-    age = int(input("Введите ваш возраст: "))
-    civil = input("Вы гражданин страны?(y/n):")
-    dis = input("Вы дисквалифицированы с выборов?(y/n):")
-except ValueError:
-    print("Введите возраст числом!")
+#Функция ввода данных
+def input_data():
+    global age, civil, dis
+    try:
+        age = int(input("Введите ваш возраст: "))
+        civil = input("Вы гражданин страны?(y/n):")
+        assert civil == "y" or civil == "Y" or civil == "n" \
+               or civil == "N", "Ошибка! Введите y или n"
+        dis = input("Вы дисквалифицированы с выборов?(y/n):")
+        assert dis == "y" or dis == "Y" or dis == "n" \
+               or dis == "N", "Ошибка! Введите y или n"
+    except ValueError:
+        print("Введите возраст числом!")
 
-#Проврка корректности ввода гражданства
-if civil == "y" or civil == "Y":
-    civil_y = True
-elif civil == "n" or civil == "N":
-    civil_y = False
-else:
-    print("Ошибка! Введите y или n")
 
-#Проверка корректности ввода дисквалификации
-if dis == "n" or dis == "N":
-    dis_n = True
-elif dis == "y" or dis == "Y":
-    dis_n = False
-else:
-    print("Ошибка! Введите y или n")
+#Функция проверки гражданства
+def check_civil(civ):
+    if civ == "y" or civ == "Y":
+        civil_y = True
+    elif civil == "n" or civil == "N":
+        civil_y = False
+    else:
+        print("Ошибка! Введите y или n")
+    return civil_y
 
-#Проверка допуска к выборам
-if age >= 18 and civil_y and dis_n:
-    print("Вы можете голосовать!")
-else:
-    print("Вы не можете голосовать!")
+
+#Функция проверки дисквалификации
+def check_dis(d):
+    if d == "n" or d == "N":
+        dis_n = True
+    elif d == "y" or d == "Y":
+        dis_n = False
+    else:
+        print("Ошибка! Введите y или n")
+    return dis_n
+
+
+#Функция проверки допуска к выборам
+def check_elect():
+    if age >= 18 and check_civil(civil) and check_dis(dis):
+        print("Вы можете голосовать!")
+    else:
+        print("Вы не можете голосовать!")
+
+
+#Основное тело программы
+input_data()
+check_elect()
