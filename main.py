@@ -17,10 +17,8 @@ def input_data():
 def check_civil(civ):
     if civ == "y" or civ == "Y":
         civil_y = True
-    elif civil == "n" or civil == "N":
-        civil_y = False
     else:
-        print("Ошибка! Введите y или n")
+        civil_y = False
     return civil_y
 
 
@@ -28,10 +26,8 @@ def check_civil(civ):
 def check_dis(d):
     if d == "n" or d == "N":
         dis_n = True
-    elif d == "y" or d == "Y":
-        dis_n = False
     else:
-        print("Ошибка! Введите y или n")
+        dis_n = False
     return dis_n
 
 
